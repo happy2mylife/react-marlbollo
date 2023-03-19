@@ -1,0 +1,40 @@
+.title {
+  text-align: center;
+}
+
+table,
+tr,
+td,
+th {
+  border: solid 1px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.order {
+  text-align: center;
+  width: 90%;
+}
+
+.bOrder {
+  width: 5%;
+}
+
+.bName {
+  width: 15%;
+}
+
+.bField {
+  width: 5%;
+}
+
+.bTurn {
+  width: 10%;
+}
+
+tbody tr {
+  height: 50px;
+}
