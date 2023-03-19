@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar } from "@mui/material";
 import React, { memo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./ButtonLogin";
-
+import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 export const Header = memo(() => {
   const navigate = useNavigate();
 
@@ -22,6 +22,11 @@ export const Header = memo(() => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
+              <HomeSharpIcon
+                onClick={() => {
+                  navigate("/");
+                }}
+              />
               <div style={{ flexGrow: 1 }}></div>
               <ButtonLogin
                 handleLogin={handleLogin}
