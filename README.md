@@ -44,3 +44,18 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## prepare
+.env.local
+```
+REACT_APP_apiKey=""
+REACT_APP_authDomain= ""
+REACT_APP_projectId=""
+REACT_APP_storageBucket=""
+REACT_APP_messagingSenderId=""
+REACT_APP_appId=""
+REACT_APP_database=""
+REACT_APP_measurementId=""
+
+```
