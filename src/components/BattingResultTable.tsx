@@ -17,6 +17,10 @@ export const BattingResultTable = ({
   setBattingResults,
 }: propsType) => {
   const onUpdateName = (playerIndex: number, value: string) => {
+    if (battingResults[playerIndex].name === value) {
+      return;
+    }
+
     battingResults[playerIndex].name = value;
     setBattingResults([...battingResults]);
   };
@@ -26,6 +30,9 @@ export const BattingResultTable = ({
     resultIndex: number,
     value: string
   ) => {
+    if (battingResults[playerIndex].results[resultIndex] === value) {
+      return;
+    }
     battingResults[playerIndex].results[resultIndex] = value;
     setBattingResults([...battingResults]);
   };
@@ -33,6 +40,10 @@ export const BattingResultTable = ({
   const onUpdateField = (event: SelectChangeEvent) => {
     const playerIndex = Number(event.target.name);
     const value = Number(event.target.value);
+    if (battingResults[playerIndex].field === value) {
+      return;
+    }
+
     battingResults[playerIndex].field = value;
     // 新たな参照として更新しないと、変更検知されない
     setBattingResults([...battingResults]);
