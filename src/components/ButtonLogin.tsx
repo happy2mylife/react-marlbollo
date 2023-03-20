@@ -3,6 +3,7 @@ import { User } from "firebase/auth";
 import React, { memo, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { FirebaseService } from "../services/FirebaseService";
+import { BaseButton } from "./atoms/button/BaseButton";
 
 export const ButtonLogin = memo(({ handleLogin, handleLogout }: any) => {
   const currentUser = useContext<User | null>(AuthContext);
@@ -29,14 +30,7 @@ export const ButtonLogin = memo(({ handleLogin, handleLogout }: any) => {
       ) : (
         <>
           {currentUser.displayName}さん
-          <Button
-            style={{ marginLeft: "5px" }}
-            variant="outlined"
-            color="inherit"
-            onClick={onClickLogout}
-          >
-            ログアウト
-          </Button>
+          <BaseButton onClick={onClickLogout}>ログアウト</BaseButton>
         </>
       )}
     </>

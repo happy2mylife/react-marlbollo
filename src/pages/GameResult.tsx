@@ -1,5 +1,4 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { SelectGame } from "../components/SelectGame";
 import css from "./GameResultPage.module.css";
 import { CircularProgress, SelectChangeEvent } from "@mui/material";
@@ -7,7 +6,7 @@ import { CircularProgress, SelectChangeEvent } from "@mui/material";
 import { onValue, ref, set, push } from "firebase/database";
 import { db } from "../services/firebase";
 import { BattingResultTable } from "../components/BattingResultTable";
-import { Container } from "@mui/system";
+import { BaseButton } from "../components/atoms/button/BaseButton";
 
 type GameResult = {
   date: string;
@@ -140,8 +139,8 @@ export const GameResultPage = memo(() => {
             </>
           )}
           <div>
-            <button onClick={saveGameResult}>登録</button>
-            <button onClick={updatePlayersResult}>更新</button>
+            <BaseButton onClick={saveGameResult}>登録</BaseButton>
+            <BaseButton onClick={updatePlayersResult}>更新</BaseButton>
           </div>
         </>
       )}
