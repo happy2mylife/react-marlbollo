@@ -142,7 +142,6 @@ export const GameResultPage = memo(() => {
           <div>
             <button onClick={saveGameResult}>登録</button>
             <button onClick={updatePlayersResult}>更新</button>
-            <Link to="/">トップへ</Link>
           </div>
         </>
       )}
