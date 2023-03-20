@@ -3,6 +3,16 @@ import React, { memo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./ButtonLogin";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
+
+import { styled } from "@mui/material/styles";
+
+const HomeSharpIconWithStyle = styled(HomeSharpIcon)({
+  "&:hover": {
+    cursor: "pointer",
+    opacity: "0.8",
+  },
+});
+
 export const Header = memo(() => {
   const navigate = useNavigate();
 
@@ -22,7 +32,7 @@ export const Header = memo(() => {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <HomeSharpIcon
+              <HomeSharpIconWithStyle
                 onClick={() => {
                   navigate("/");
                 }}

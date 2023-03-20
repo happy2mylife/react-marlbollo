@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import React from "react";
 
@@ -6,15 +7,18 @@ type PropsType = {
   children: String;
 };
 
+const BaseButtonWithStyle = styled(Button)({
+  marginLeft: "5px",
+  "&:hover": {
+    cursor: "pointer",
+    opacity: "0.5",
+  },
+});
+
 export const BaseButton = ({ onClick, children }: PropsType) => {
   return (
-    <Button
-      sx={{ ml: "5px" }}
-      variant="outlined"
-      color="inherit"
-      onClick={onClick}
-    >
+    <BaseButtonWithStyle variant="outlined" color="inherit" onClick={onClick}>
       {children}
-    </Button>
+    </BaseButtonWithStyle>
   );
 };
