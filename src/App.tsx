@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 
 function App() {
   const styleCss = {
-    minHeight: "100vw",
+    minHeight: "100vh",
     position: "relative",
     paddingBottom: "30px",
   } as const;
