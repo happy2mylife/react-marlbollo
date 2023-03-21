@@ -7,6 +7,12 @@ import { onValue, ref, set, push } from "firebase/database";
 import { db } from "../services/firebase";
 import { BattingResultTable } from "../components/BattingResultTable";
 import { BaseButton } from "../components/atoms/button/BaseButton";
+import { FirebaseService } from "../services/FirebaseService";
+import {
+  YesNoDialog,
+  YesNoDialogProps,
+  YesNoResult,
+} from "../components/atoms/dialog/YesNoDialog";
 
 type GameResult = {
   date: string;
@@ -31,6 +37,12 @@ export const GameResultPage = memo(() => {
   const [errMessage, setErrorMessage] = useState("");
   const [selectedGame, setSelectedGame] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  const [yesNoDialog, setYesNoDialog] = useState<YesNoDialogProps>({
+    open: false,
+    title: "",
+    positiveLabel: "",
+    negativeLabel: "",
+  });
 
   useEffect(() => {
     console.log("firebase /results アクセス");
@@ -96,9 +108,28 @@ export const GameResultPage = memo(() => {
     set(childRef, gameResult);
   };
 
+  const dialogClose = (e: YesNoResult) => {
+    setYesNoDialog({
+      ...yesNoDialog,
+      open: false,
+    });
+    if (e === YesNoResult.Yes) {
+      FirebaseService.updatePlayerResult(
+        gameResults[selectedGame].id,
+        gameResults[selectedGame].players
+      );
+
+      console.log("更新完了！");
+    }
+  };
+
   const updatePlayersResult = () => {
-    const dbRef = ref(db, `/results/${gameResults[selectedGame].id}/players`);
-    set(dbRef, gameResults[selectedGame].players);
+    setYesNoDialog({
+      open: true,
+      title: "更新しますか？",
+      positiveLabel: "はい",
+      negativeLabel: "いいえ",
+    });
   };
 
   const handleChangeSelectedGame = (event: SelectChangeEvent<string>) => {
@@ -142,6 +173,13 @@ export const GameResultPage = memo(() => {
             <BaseButton onClick={saveGameResult}>登録</BaseButton>
             <BaseButton onClick={updatePlayersResult}>更新</BaseButton>
           </div>
+          <YesNoDialog
+            open={yesNoDialog.open}
+            handleClose={dialogClose}
+            title={yesNoDialog.title}
+            positiveLabel={yesNoDialog.positiveLabel}
+            negativeLabel={yesNoDialog.negativeLabel}
+          />
         </>
       )}
     </>

@@ -1,5 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
-import { auth, provider } from "./firebase";
+import { ref, set } from "firebase/database";
+import { IBattingResult } from "../pages/GameResult";
+import { auth, db, provider } from "./firebase";
 
 export class FirebaseService {
   private constructor() {}
@@ -32,5 +34,14 @@ export class FirebaseService {
 
   static logout() {
     return auth.signOut();
+  }
+
+  static async updatePlayerResult(
+    gameId: string,
+    battingResult: IBattingResult[]
+  ) {
+    const dbRef = ref(db, `/results/${gameId}/players`);
+    await set(dbRef, battingResult);
+    return;
   }
 }
